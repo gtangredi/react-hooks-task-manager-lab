@@ -4,12 +4,12 @@ import TaskForm from "./TaskForm";
 import SearchBar from "./SearchBar";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const { loadTasks } = useContext(TaskContext);
 
   useEffect(() => {
     fetch('http://localhost:6001/tasks')
     .then(r=>r.json())
-    .then(data=>setTasks(data))
+    .then(data=>loadTasks(data))
     
   }, []);
 
@@ -18,6 +18,7 @@ function App() {
       <h1>Task Manager</h1>
       <TaskForm />
       <SearchBar />
+      
     </div>
   );
 }
